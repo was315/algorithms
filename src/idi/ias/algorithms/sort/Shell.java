@@ -1,17 +1,19 @@
 package idi.ias.algorithms.sort;
 
 /**
- * Created by IAS on 2017/2/25.
+ * Created by IAS on 2017/2/26.
  */
-
-public class Select {
+public class Shell {
     public static void sort(Comparable[] a){
-        for (int i = 0; i < a.length - 1; i++){
-            for (int j = i+1; j < a.length; j++){
-                if (!less(a[i], a[j])){
-                    exchange(a, i, j);
-                }
+        int N = a.length;
+        int h = 1;
+        while (h < N / 3) h = 3*h + 1;
+        while (h > 0){
+            for (int i = h; i < N; i++){
+                for (int j = i; j >= h && less(a[j], a[j-h]); j -= h)
+                    exchange(a, j, j-h);
             }
+            h /= 3;
         }
     }
     public static  boolean isSorted(Comparable[] a){
@@ -33,9 +35,8 @@ public class Select {
         System.out.println();
     }
     public static void main(String[] args){
-        Integer[] a = {3,4,1,6,8,4,123,54,3,44,432,666,434};
+        Integer[] a = {3,4,1,6,8,4,123,54,3,44,432,66,33,44,55,77,56,666,434};
         sort(a);
         show(a);
     }
-
 }

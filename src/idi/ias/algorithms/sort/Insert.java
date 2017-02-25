@@ -1,17 +1,25 @@
 package idi.ias.algorithms.sort;
 
 /**
- * Created by IAS on 2017/2/25.
+ * Created by IAS on 2017/2/26.
  */
-
-public class Select {
+public class Insert {
     public static void sort(Comparable[] a){
-        for (int i = 0; i < a.length - 1; i++){
-            for (int j = i+1; j < a.length; j++){
-                if (!less(a[i], a[j])){
-                    exchange(a, i, j);
-                }
+       for (int i = 1; i < a.length; i++){
+           for (int j = i; j > 0 && less(a[j], a[j-1]); j--){
+               exchange(a,j, j-1 );
+           }
+       }
+    }
+    public static void sortMove(Comparable a[]){
+        for (int i = 1; i < a.length; i++){
+            Comparable t = a[i];
+            int j = i;
+            while (j > 0 && less(t, a[j-1])){
+                a[j] = a[j-1];
+                j--;
             }
+            a[j] = t;
         }
     }
     public static  boolean isSorted(Comparable[] a){
@@ -34,8 +42,7 @@ public class Select {
     }
     public static void main(String[] args){
         Integer[] a = {3,4,1,6,8,4,123,54,3,44,432,666,434};
-        sort(a);
+        sortMove(a);
         show(a);
     }
-
 }
