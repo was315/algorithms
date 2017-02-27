@@ -13,6 +13,7 @@ public class SortCompare {
             case "Insert": Insert.sort(a);break;
             case "InsertMove": Insert.sortMove(a);break;
             case "Shell": Shell.sort(a);break;
+            case "MergeA": Merge.sortA(a);break;
             default: System.out.println("Warn: no method");
         }
         return System.currentTimeMillis() - times;
@@ -34,5 +35,6 @@ public class SortCompare {
         System.out.println("Insert:"+test("Insert", 2000,10)+"ms");
         System.out.println("InsertMove:"+test("InsertMove", 2000,10)+"ms");
         System.out.println("Shell:"+test("Shell", 2000,10)+"ms");
+        System.out.println("MergeA:"+test("MergeA", 2000,10)+"ms");
     }
 }
